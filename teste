@@ -1,0 +1,45 @@
+class Node:
+    def __init__(self, info):
+        self.info = info
+
+class ListaSequencial:
+    #o unico dado requerido na lista é o tamanhomaximo
+
+    def __init__(self, tamanhomaximo):
+        #aqui vamos tirar vantagem da estrutura da linguagem
+        self.lista = []
+
+        #preciso saber quem será o proximo elemento 
+        self.proximoNodo = 0
+
+        #saber até onde posso navegar na minha lista
+        self.tamanhomaximo = tamanhomaximo - 1
+
+        #verificar se já ultrapassou o tamanhomaximo maximo
+    def inserirNodo(self, nodo):    
+        if self.proximoNodo > self.tamanhomaximo:
+            print("a lista já alcançou o tamanhomaximo maximo")
+        #adicionar o item na lista
+        self.lista.append(None)
+        self.lista[self.proximoNodo] = nodo
+
+        #atualizar a variavel do proximo elemento
+        self.proximoNodo +=1 
+
+
+    def acessarPeloIndice(self, indice):    
+        if indice >= self.tamanhomaximo:
+            print("impossivel" +indice)
+        else:
+            print(self.lista[indice])
+    def acessarPeloValor(self):
+        pass
+
+    def imprimir(self):
+        pass
+
+    def inserirNaPosicao(self):
+        pass
+
+
+lista = ListaSequencial(10)

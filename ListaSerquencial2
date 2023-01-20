@@ -101,7 +101,7 @@ class ListaSequencial:
                 self.proximoNodo += 1
             else:
             
-                self.lista[proxEsp] = self.lista[-i]
+                self.lista[proxEsp] = self.lista[-i+1]
                 proxEsp -= 1
         
 
@@ -127,4 +127,5 @@ lista.tamanho()
 #lista.varrer()
 
 lista.inserir_em_uma_posicao_especifica("Vinicius", 1)
-lista.varrer()
+
+

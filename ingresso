@@ -16,10 +16,13 @@ Conforme a escolha do usuário, diga se que o VIP é camarote superior ou inferi
 ____________________________________________________________________________________________________________________
  
 public abstract class Ingresso{
-    double Valor = 19;
+    public double ValorIngresso;
 
-    public void imprimeValor(){
-        System.out.println(Valor);
+
+
+
+    public double imprimeValor(){
+        return this.ValorIngresso;
     }
     
         
@@ -27,7 +30,7 @@ class Vip extends Ingresso{
     double ValorAdicional = 12;
 
     public Double valorVip(){
-        return (Valor + ValorAdicional);
+        return (ValorIngresso + ValorAdicional);
     }
         
         

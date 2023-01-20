@@ -1,0 +1,130 @@
+class ListaSequencial:
+  # o unico dado requerido da lista é o tamanho
+  def __init__(self, tamanhoMaximo): 
+    
+    # aqui vamos tirar vantagem da estrutura da linguagem
+    self.lista = []
+
+    # eu preciso saber quem será o proximo nodo
+    self.proximoNodo = 0
+
+    # eu tenho que saber até onde posso navegar na minha lista
+    self.tamanhoMaximo = tamanhoMaximo - 1 
+
+  def inserir_nodo(self, nodo):
+    # verificar se ja estou no maximo da minha lista
+    if self.proximoNodo > self.tamanhoMaximo:
+      print("Olha, ja deu heim? Lista está no maximo!")
+      return
+    
+    # fazer um append na lista
+    self.lista.append(None)
+    self.lista[self.proximoNodo] = nodo
+
+    # atualizar o indice do proximo nodo
+    self.proximoNodo = self.proximoNodo + 1
+
+  def tamanho(self):
+    print(len(self.lista))
+
+  def acessar_no_pelo_indice(self, indice):
+
+    # sabe se é um indice valido
+    if indice <= self.tamanhoMaximo:
+      # se for, arrocha
+      return self.lista[indice]
+    else:
+      # se nao, xinga
+      print("Esse indice nao existe: " + str(indice))
+
+
+  def varrer(self):
+    # iterar todos os elementos da lista, usando a variavel proximoNodo
+    for i in range(self.proximoNodo):
+      # imprimir o elemento atual do objeto Nodo
+      
+      # print(self.proximoNodo.info[i])
+      print(self.lista[i])
+    return
+
+
+  # facil
+  # passo o valor e me devolve o indice
+  def acessar_no_pelo_valor(self, valor):
+    # 1. varrer a lista --> e ja temos o codigo que varre a lista
+    for i in range(self.proximoNodo):
+    # 2. verificar se o elemento atual é o mesmo que foi passado por parâmetro --> ja temos um codigo parecido com isso
+        valorAtual = self.lista[i]
+        if valor == valorAtual:
+    # 3. retornar o indice, caso o elemento seja igual
+            print(self.lista[valorAtual])
+            return
+    # 4. avisar o usuario caso não exista o valor buscado
+        print(f"este valor '{valor}', não existe na lista")
+    
+
+  # facil
+  # passo o indice e me devolve o valor
+  def acessar_no_pelo_indice(self, indice):
+    if indice <= self.tamanhoMaximo:
+      # se for, arrocha
+      return print(self.lista[indice])
+    else:
+      # se nao, xinga
+      print("Esse indice nao existe: " + str(indice))
+
+  # medio
+  def inserir_em_uma_posicao_especifica(self, valor, indice):
+    
+    #Verificar se tem espaço
+    if indice > self.tamanhoMaximo:
+        print("Esta posição ultrapassa o tamanho maximo da lista")
+    
+    '''#verificar se com a adição do nodo o tamanho maximo não vai ser ultrapassado 
+    if self.proximoNodo > self.tamanhoMaximo:
+      print("Olha, ja deu heim? Lista está no maximo!")'''
+    
+    #verificar se o indice fornecido é igual ao proximo (Final)
+    if indice == self.proximoNodo:
+        self.inserir_nodo(valor)
+    
+    #verificar se vão ter espaços em branco apos a inserção
+    if indice > self.proximoNodo:
+        print('operação invalida, haverão espaços em branco em lugares indevidos')
+    
+    #verificar colisão
+    if self.lista[indice] != None:
+        proxEsp = self.proximoNodo-1
+        for i in range (len(self.lista)):
+            if proxEsp == indice:
+                self.lista[proxEsp] = valor
+                self.proximoNodo += 1
+            else:
+            
+                self.lista[proxEsp] = self.lista[-i]
+                proxEsp -= 1
+        
+
+                
+
+
+
+
+
+
+
+
+lista = ListaSequencial(7)
+lista.inserir_nodo("Artur")
+lista.inserir_nodo("Fabio")
+lista.inserir_nodo("Sideral")
+lista.inserir_nodo("Gustavo")
+lista.inserir_nodo("Joao")
+#lista.inserir_nodo("Wilson")
+#lista.inserir_nodo("Yuri")
+
+lista.tamanho()
+#lista.varrer()
+
+lista.inserir_em_uma_posicao_especifica("Vinicius", 1)
+lista.varrer()

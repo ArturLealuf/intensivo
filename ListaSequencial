@@ -1,0 +1,155 @@
+class ListaSequencial:
+  # o unico dado requerido da lista é o tamanho
+  def __init__(self, tamanhoMaximo): 
+    
+    # aqui vamos tirar vantagem da estrutura da linguagem
+    self.lista = []
+
+    # eu preciso saber quem será o proximo nodo
+    self.proximoNodo = 0
+
+    # eu tenho que saber até onde posso navegar na minha lista
+    self.tamanhoMaximo = tamanhoMaximo - 1 
+
+  def inserir_nodo(self, nodo):
+    # verificar se ja estou no maximo da minha lista
+    if self.proximoNodo > self.tamanhoMaximo:
+      print("Olha, ja deu heim? Lista está no maximo!")
+      return
+    
+    # fazer um append na lista
+    self.lista.append(None)
+    self.lista[self.proximoNodo] = nodo
+
+    # atualizar o indice do proximo nodo
+    self.proximoNodo = self.proximoNodo + 1
+
+  def tamanho(self):
+    print(len(self.lista))
+
+  def acessar_no_pelo_indice(self, indice):
+    # sabe se é um indice valido
+    if indice <= self.tamanhoMaximo:
+      # se for, arrocha
+      return self.lista[indice]
+    else:
+      # se nao, xinga
+      print("Esse indice nao existe: " + str(indice))
+
+  # facil
+  def acessar_no_pelo_valor(self, valor):
+
+    # varrer a lista
+    for i in range(self.proximoNodo):
+      # se encontrar um valor, retornar o indice atual
+      valor_atual = self.lista[i]
+      if valor == valor_atual:
+        return (i)
+
+    print("nao achei o valor procurado!")
+
+    
+  # facil
+  def imprimir(self):
+    for i in range(self.proximoNodo):
+      print(self.lista[i], end=", ")
+    print()
+
+  
+  def insereNodo(self, nodo, posicao):
+    # Verifica se a posição utilizada para inserção está fora do
+    # tamanho máximo da lista
+    if posicao > self.tamanhoMaximo:
+        print('ERROR\nPosição Inválida!\nMaior que o tamanho máximo da lista')
+        return
+
+    # Se a posição a ser utilizada é o próprio próximo índice, apenas
+    # aloca memória e faz a inserção do nodo
+    if posicao == self.proximoNodo:
+        self.lista.append(None)
+        self.proximoNodo += 1
+
+        self.lista[posicao] = nodo
+        return
+
+    # Se a posição for maior que o próximo índice, a lista teria
+    # espaços vazios entre elementos. Não queremos isso, portanto
+    # fazemos a verificação e caso isso ocorra apresentaremos uma
+    # mensagem de erro
+    if posicao > self.proximoNodo:
+        print('ERROR\nPosição Inválida!\nMaior que o final da lista')
+        return
+
+    # Verifica se a posição utilizada para inserção está em um espaço
+    # entre o primeiro índice e o próximo índice da lista. Caso sim,
+    # todos os elementos da lista à direita deverão ser deslocados para
+    # a direita a fim de abrir espaço para o nodo a ser inserido
+    if posicao >= 0 and posicao < self.proximoNodo:
+        self.lista.append(None)
+        self.proximoNodo += 1
+
+        # Laço for para deslocar os elementos para um índice à direita,
+        # abrindo espaço para a inserção do nodo na posição indicada
+        #
+        # Atentem pois esse laço é decrescente
+        for i in range(self.proximoNodo - 1, posicao, -1):
+            self.lista[i], self.lista[i - 1] = self.lista[i - 1], self.lista[i]
+
+        self.lista[posicao] = nodo
+        return
+  
+  # medio++
+  def remover(self, indice):
+    #ver se o indice não é maior que o 'proximo nodo' e consquentemente tamanho maximo da lista
+    if indice > self.proximoNodo:
+      print("Impossivel remover!\nMaior que o tamanho máximo da lista")
+      return
+    
+    #ver caso o indice seja o ultimo e apenas remover de for
+    if indice == self.proximoNodo -1:
+      del self.lista[indice]
+      self.proximoNodo -=1
+      return
+
+    #se não atender nenhum dos casos acima mover os indices e fazer a remoção  
+    for i in range(indice, self.proximoNodo-1):
+      self.lista[i], self.lista[i + 1] = self.lista[i + 1], self.lista[i]
+      #print(self.lista)
+    
+    del self.lista[i+1]
+    self.proximoNodo -=1
+
+    #del self.lista[indice] 
+    #self.proximoNodo -=1
+    return
+
+lista = ListaSequencial(9)
+lista.inserir_nodo("A")
+lista.inserir_nodo("B")
+lista.inserir_nodo("C")
+
+
+
+#lista.imprimir()
+
+#lista.insereNodo("Gustavo", 6)
+
+#lista.imprimir()
+
+lista.acessar_no_pelo_indice(1)
+#lista.acessar_no_pelo_valor("123")
+
+
+lista.inserir_nodo("Sideral")
+lista.inserir_nodo("Gustavo")
+#lista.inserir_nodo("Joao")
+#lista.inserir_nodo("Wilson")
+lista.inserir_nodo("Yuri")
+
+
+lista.imprimir()
+lista.tamanho()
+
+lista.remover(3)
+
+lista.imprimir()

@@ -1,0 +1,16 @@
+class node:
+    def __init__(self, valor, proximo):
+        self.valor = valor
+        self.proximo = proximo
+
+class ListaEncadeada:
+    def __init__(self):
+        self.raiz = None
+
+
+    def inserirNoComeço(self, novoNodo):
+        if self.raiz == None:
+            self.raiz = novoNodo
+
+        else:
+            notemp = novoNodo

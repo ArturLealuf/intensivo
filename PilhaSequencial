@@ -1,0 +1,49 @@
+class Nodo:
+    def __init__(self, info):
+        self.info = info
+
+class PilhaSequencial:
+    def __init__(self, tamanhoMaximo):
+        
+        self.pilha = []
+        self.topo = 0
+        self.tamanhoMaximo = tamanhoMaximo - 1
+
+    def insereNodo(self, nodo):
+        if self.topo > self.tamanhoMaximo:
+            print('ERROR\nPilha com tamanho máximo permitido')
+            return
+        
+        self.pilha.append(None)
+        self.pilha[self.topo] = nodo
+        self.topo += 1
+        
+        return
+
+    def removeNodo(self):
+        if self.topo == 0:
+            print('ERROR\nPilha vazia!')
+            return
+        
+        self.pilha.pop()
+        self.topo -= 1
+        return
+
+    def acessaNodo(self):
+        if self.topo == 0:
+            print('ERROR\nPilha vazia!')
+            return
+        
+        print(self.pilha[self.topo - 1].info)
+        return
+
+    def imprimePilha(self):
+        for i in self.pilha:
+            print(i, end = ' ')
+        return
+
+pilha = PilhaSequencial(8)
+
+pilha.insereNodo(213)
+pilha.insereNodo(56)
+pilha.imprimePilha()

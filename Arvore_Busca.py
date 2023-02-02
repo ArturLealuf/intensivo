@@ -120,6 +120,5 @@ r = tree.min()
 tree.print_em_ordem()
 
 b = tree.buscar(50)
-if b == None:
-    print('\nnao tem')
-else: print('\n' ,b.raiz.dado, "encontrado")
+if b != None:
+    print('\n' ,b.raiz.dado, "encontrado")
